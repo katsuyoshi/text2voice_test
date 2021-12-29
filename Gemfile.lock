@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (2.7.6)
+    text2voice (0.0.2)
+
+PLATFORMS
+  x86_64-darwin-19
+
+DEPENDENCIES
+  dotenv
+  text2voice
+
+BUNDLED WITH
+   2.2.31
