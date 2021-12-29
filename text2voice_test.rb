@@ -26,7 +26,7 @@ def load_histories
 end
 
 @histories = load_histories
-@param = @histories.first || Param.new("こーんにーちは。こんにちはじゃねぇこんばんはだろう。", "haruka", "happiness", 4, 100, 100)
+@param = @histories.first || Param.new("こーんにーちは。こんにちはじゃねぇよこんばんはだろう。", "haruka", "happiness", 4, 100, 100)
 
 def save_histories
   File.write(@histories_path, @histories.map{|h| h.to_a}.to_yaml)
