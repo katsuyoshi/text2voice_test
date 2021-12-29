@@ -50,8 +50,8 @@ def speak param=@param
   `afplay #{tf.path}`
   File.delete tf.path
   @histories.delete param
-  @histories.unshift param
-  @histories.take(10)
+  @histories.unshift param.dup
+  @histories.take(9)
   save_histories
 end
 
@@ -190,7 +190,7 @@ def top_menu
 4. Set emotion level.       current: #{@param.emotion_level}
 5. Set pitch.               current #{@param.pitch}%
 6. Set speed.               current #{@param.speed}%
-7. History.
+H. History.
 Q. Quit.
 
 Choose a command No.: 
