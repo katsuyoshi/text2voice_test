@@ -3,6 +3,14 @@ require 'dotenv'
 require 'tempfile'
 require 'yaml'
 
+@win = /mswin|msys|mingw|cygwin|bccwin|wince|emc/ =~ RbConfig::CONFIG['host_os']
+@mac = /darwin|mac os/ =~ RbConfig::CONFIG['host_os']
+
+if @win
+  require 'win32/sound'
+  include Win32
+end
+
 Dotenv.load
 
 Param = Struct.new(:text, :speaker, :emotion, :emotion_level, :pitch, :speed, :volume) do
@@ -45,10 +53,13 @@ def speak param=@param
       emotion: supported_speaker?(param.speaker) ? param.emotion : nil,
       level: param.emotion_level)
 
-  tf = Tempfile.create("test.wav")
-  @voice.save_as(tf.path)
-  `afplay #{tf.path}`
-  File.delete tf.path
+  @tf ||= Tempfile.create(["test", ".wav"])
+  @voice.save_as(@tf.path)
+
+  # play sound
+  `afplay #{@tf.path}` if @mac
+  Sound.play(@tf.path) if @win
+
   @histories.delete param
   @histories.unshift param.dup
   @histories.take(9)
@@ -73,7 +84,7 @@ def speaker_menu
     end
     puts
     print "Choose the speaker: "
-    
+
     i = gets.to_i
     case i
     when 1..speakers.size
@@ -93,7 +104,7 @@ def emotion_menu
     end
     puts
     print "Choose the emotion: "
-    
+
     i = gets.to_i
     case i
     when 1..emotions.size
@@ -167,7 +178,7 @@ def history_menu
     puts "B. back"
     puts
     print "Choose a history : "
-    
+
     s = gets.chomp
     case s
     when /b/i, /q/i
@@ -193,7 +204,7 @@ def top_menu
 H. History.
 Q. Quit.
 
-Choose a command No.: 
+Choose a command No.:
 EOS
 .chomp
 
@@ -222,3 +233,6 @@ EOS
 end
 
 while top_menu; end
+
+# FIXME: It raises EACCES error on windows. Maybe it holdings a file.
+File.delete @tf.path if @tf unless @win
