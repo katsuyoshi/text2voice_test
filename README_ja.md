@@ -4,11 +4,37 @@
 
 HOYA株式会社で提供している[VoiceText Web API](https://cloud.voicetext.jp/webapi)の動作確認用です。
 
-# 使用方法
+# 準備
+
+## Ruby環境の準備
+
+Rubyスクリプトを使用しますので、Ruby実行環境をインストールします。  
+インストールについてはRubyサイトをご覧ください。
+
+https://www.ruby-lang.org/ja/
+
+## プロジェクトの取得
+
+gitコマンドを使うか、ダウンロードします。
+
+### gitコマンドを使う場合
+
+gitコマンドを使う場合は以下のコマンドを実行します。
+
+```
+% git clone https://github.com/katsuyoshi/text2voice_test.git
+```
+
+### ダウンロードする場合
+
+ダウンロードする場合は以下のリンクからダウンロードします。
+
+https://github.com/katsuyoshi/text2voice_test/archive/refs/heads/main.zip
+
 
 ## Gem インストール
 
-bundleコマンドで必要なgemをインストールします
+ターミナル(コマンドプロンプト)で取得したプロジェクトのディレクトリに移動し、bundleコマンドで必要なgemをインストールします
 
 ```
 % cd text2voice_test
@@ -27,11 +53,20 @@ https://cloud.voicetext.jp/webapi/api_keys/new
 % cp .env.sample .env
 ```
 
-.envファイルのYOUR_API_KEYの部分を取得したAPIキーに置き換えます。
+windowsの場合はcopyコマンドを使用します。
+
+```
+> copy .env.sample .env
+```
+
+
+テキストエディターなどで.envファイルのYOUR_API_KEYの部分を取得したAPIキーに置き換えます。
 
 ```.env
 TEXT2VOICE_APIKEY=YOUR_API_KEY
 ```
+
+# 使用方法
 
 ## 実行
 

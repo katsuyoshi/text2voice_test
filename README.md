@@ -4,12 +4,35 @@
 
 It is a test program for [VoiceText Web API](https://cloud.voicetext.jp/webapi), which HOYA Corporation provides.
 
+# Preparation
 
-# How to use
+## Install ruby
+
+It uses the Ruby script. First, you should get the runtime of ruby. For installation, please see the official site.
+
+https://www.ruby-lang.org/ja/
+
+
+## Get this project
+
+Use the git command or download it.
+
+### Use the git command
+
+```
+% https://github.com/katsuyoshi/text2voice_test.git
+```
+
+### Download
+
+Download it from the below link.
+
+https://github.com/katsuyoshi/text2voice_test/archive/refs/heads/main.zip
+
 
 ## Gem install
 
-To install gems, execute the bundle command.
+Move the project directory by Terminal app (or Command prompt) and execute the bundle command.
 
 ```
 % cd text2voice_test
@@ -28,13 +51,20 @@ Copy ```.env.sample``` to ```.env``` file.
 % cp .env.sample .env
 ```
 
+Use copy command with Windows.
+
+```
+> copy .env.sample .env
+```
+
+
 Replace YOUR_API_KEY with your API key in ```.env``` file.
 
 ```.env
 TEXT2VOICE_APIKEY=YOUR_API_KEY
 ```
 
-## Execution
+# How to use
 
 Run text2voice_test.rb script.
 
